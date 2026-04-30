@@ -244,15 +244,16 @@ function checkReadingAnswers() {
     const inputs = document.querySelectorAll('.reading-input');
     let allCorrect = true;
 
+    // 1. Check each answer
     inputs.forEach(input => {
         const index = input.getAttribute('data-index');
         const userAnswer = input.value.toLowerCase().trim();
         const correctAnswer = currentStory.questions[index].a.toLowerCase();
 
         if (userAnswer === correctAnswer) {
-            input.style.borderColor = "#27ae60";
+            input.style.borderColor = "#27ae60"; // Green for right
         } else {
-            input.style.borderColor = "#e74c3c";
+            input.style.borderColor = "#e74c3c"; // Red for wrong
             allCorrect = false;
         }
     });
@@ -265,17 +266,29 @@ function checkReadingAnswers() {
         feedback.innerText = "🌟 Amazing! You understood everything!";
         feedback.style.color = "#27ae60";
         
+        // 2. Check if this is the LAST story (Story #5)
         if (currentStoryIndex === readingLessons.length - 1) {
-    surpriseBox.style.display = "block";
-    // Add a little extra sparkle to the surprise
-    surpriseBox.style.animation = "pulse-animation 2s infinite";
-    surpriseBox.scrollIntoView({ behavior: 'smooth' });
+            // Hide the "Next" button because there are no more stories
+            if (nextStoryBtn) nextStoryBtn.style.display = "none";
+            
+            // Show the Anniversary Surprise!
+            surpriseBox.style.display = "block";
+            surpriseBox.innerHTML = `
+                <div class="love-card" style="margin-top: 20px; border: 2px solid #ffafbd; padding: 20px; border-radius: 15px; background: #fffcfc;">
+                    <h2 class="dream-glow">🎁 A Special Gift for You!</h2>
+                    <p>You finished all your lessons... but today is a special day.</p>
+                    <a href="anniversary.html" class="pulse-btn" style="text-decoration: none; display: inline-block; padding: 12px 25px; background: #ffafbd; color: white; border-radius: 25px; font-weight: bold; margin-top: 10px;">Open Our Anniversary Gift ❤️</a>
+                </div>
+            `;
+            surpriseBox.scrollIntoView({ behavior: 'smooth' });
         } else {
+            // If it's not the last story, just show the normal "Next" button
             if (nextStoryBtn) nextStoryBtn.style.display = "block";
         }
     } else {
         feedback.innerText = "❌ Some answers are wrong. Look at the story again!";
         feedback.style.color = "#e74c3c";
+        if (nextStoryBtn) nextStoryBtn.style.display = "none";
     }
 }
 
@@ -288,3 +301,4 @@ function nextStory() {
 }
 
 if (document.getElementById('story-title')) loadNewStory();
+

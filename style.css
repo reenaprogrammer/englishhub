@@ -192,3 +192,18 @@ body::before {
     from { left: -50px; }
     to { left: 110%; }
 }
+:root {
+    --love-pink: #ffafbd;
+    --love-gold: #ffc3a0;
+}
+
+.anniversary-glow {
+    text-shadow: 0 0 15px var(--love-pink), 0 0 5px white;
+    color: #d63031;
+}
+
+/* Floating Hearts Background Animation */
+@keyframes hearts {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}

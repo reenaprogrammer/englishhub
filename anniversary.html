@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 2 Years ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Floating Home Button */
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: #576574;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            z-index: 100;
+        }
+
+        .nav-home:hover {
+            background: white;
+            transform: translateX(5px);
+        }
+
+        .anniversary-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .love-card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #ffafbd;
+            position: relative;
+            z-index: 10;
+        }
+
+        .timeline {
+            margin: 30px 0;
+            border-left: 3px dashed #ffafbd;
+            padding-left: 25px;
+            text-align: left;
+        }
+
+        .moment {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .moment::before {
+            content: "✨";
+            position: absolute;
+            left: -38px;
+            background: white;
+            font-size: 1.2rem;
+        }
+
+        #love-btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            background: #ffafbd;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 175, 189, 0.4);
+        }
+
+        #love-btn:hover {
+            transform: scale(1.05);
+            background: #ff7675;
+        }
+
+        #secret-message {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 15px;
+            background: #fff5f5;
+            color: #d63031;
+            font-style: italic;
+            display: none;
+            animation: fadeIn 2s ease-in;
+        }
+
+        /* Animations */
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -10%;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back to Lessons Link -->
+    <a href="index.html" class="nav-home">🏠 Back to Lessons</a>
+
+    <div class="anniversary-container">
+        <div class="love-card">
+            <h1 class="dream-glow" style="color: #ff7675;">Happy 2nd Anniversary! ❤️</h1>
+            <p style="color: #636e72;">730 days of us...</p>
+            
+            <div class="timeline">
+                <div class="moment">
+                    <strong style="color: #2d3436;">The Day We Met</strong>
+                    <p style="font-size: 0.9rem; color: #636e72;">April 30, 2024. The best day of my life.</p>
+                </div>
+                <div class="moment">
+                    <strong style="color: #2d3436;">Learning Together</strong>
+                    <p style="font-size: 0.9rem; color: #636e72;">I love watching you grow and learn. You make me so proud!</p>
+                </div>
+                <div class="moment">
+                    <strong style="color: #2d3436;">Always & Forever</strong>
+                    <p style="font-size: 0.9rem; color: #636e72;">To many more years of laughter and love.</p>
+                </div>
+            </div>
+
+            <button id="love-btn" onclick="celebrateLove()">
+                I Love You!
+            </button>
+
+            <div id="secret-message">
+                "Thank you for being the most amazing boyfriend. I hope you liked your English Hub! Happy Anniversary! ❤️"
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function celebrateLove() {
+            const btn = document.getElementById('love-btn');
+            const msg = document.getElementById('secret-message');
+            
+            btn.innerText = "I Love You Too! ❤️";
+            btn.style.background = "#ff7675";
+            msg.style.display = "block";
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            const symbols = ["❤️", "💖", "✨", "☁️", "🌸"];
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            heart.style.animation = `floatUp ${Math.random() * 3 + 3}s linear forwards`;
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+    </script>
+</body>
+</html>
